@@ -5,9 +5,18 @@ Simple Promise wrapper for XHR
 
 Options:
 
- - method : GET
- - data : query params or post body
+ - method : GET | POST | ...
+ - data : post body
+ - form : form element to POST
  - headers: {}
+ - query:
+
+If *form* is provided, it will override *data*, and a FormData instance will be
+constructed with it.
+
+If provided, *data* will be encoded according to the 'Content-Type' header. If
+it is 'application/json', then *data* will be JSON encoded. Otherwise, URL
+encoding will be applied.
 
 # request.defaultHeaders = {}
 

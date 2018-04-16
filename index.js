@@ -9,7 +9,7 @@ class RequestError extends Error {
 }
 
 function request (url, options = {}) {
-    let {data, method, headers} = options;
+    let {data, method, headers, query} = options;
     method = method || 'GET';
 
     return new Promise(
@@ -24,11 +24,13 @@ function request (url, options = {}) {
             xhr.addEventListener('timeout', () => reject(new RequestError(`${method} ${url}`, 'timeout', xhr)));
             xhr.addEventListener('abort', () => reject(new RequestError(`${method} ${url}`, 'abort', xhr)));
 
+            if (query !== undefined) {
+                url = url + '?' + qs.encode(data);
+            }
             if (data !== undefined) {
-                if (method === 'GET') {
-                    url = url + '?' + qs.encode(data);
-                    data = undefined;
-                } else if (method === 'POST') {
+                if (options.form instanceof HTMLFormElement) {
+                    data = new FormData(form)
+                } else {
                     switch(headers['Content-Type']) {
                     case 'application/json':
                         data = JSON.stringify(data);
