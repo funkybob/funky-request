@@ -14,3 +14,13 @@ Options:
 # request.json(url, options)
 
 # request.rpc(url, method, data)
+
+# request.RequestError
+
+All errors are raised using this class.
+
+Properties:
+
+ - message: the Method and URL of the request
+ - errorType: one of 'error', 'timeout', or 'abort'
+ - xhr : the XMLHttpRequest instance
