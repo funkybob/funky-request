@@ -11,6 +11,6 @@ Options:
 
 # request.defaultHeaders = {}
 
-# json(url, options)
+# request.json(url, options)
 
-# rpc(url, method, data)
+# request.rpc(url, method, data)
