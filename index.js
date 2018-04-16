@@ -30,7 +30,7 @@ function request (url, options = {}) {
                     data = undefined;
                 } else if (method === 'POST') {
                     switch(headers['Content-Type']) {
-                    case: 'application/json':
+                    case 'application/json':
                         data = JSON.stringify(data);
                         break;
                     default:
