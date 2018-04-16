@@ -20,9 +20,16 @@ encoding will be applied.
 
 # request.defaultHeaders = {}
 
+Any values added to this Object will be set as Headers on all requests.
+
 # request.json(url, options)
 
+Automatically decodes successful responses from JSON.
+
 # request.rpc(url, method, data)
+
+Sets 'Content-Type' as 'application/json', passes *method* in a 'X-RPC-Action'
+header, and JSON decodes the response.
 
 # request.RequestError
 
