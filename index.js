@@ -1,4 +1,4 @@
-import qs from 'qs';
+import qs from '@funkybob/qs';
 
 class RequestError extends Error {
     constructor (message, type, xhr) {
@@ -56,7 +56,7 @@ function json (url, options) {
     .then(xhr => (xhr.status == 204) ? '' : JSON.parse(xhr.responseText))
 }
 
-function rpc(url, method, data) {
+function rpc (url, method, data) {
     return json(url, {
         data,
         method: 'POST',
