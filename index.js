@@ -25,7 +25,7 @@ function request (url, options = {}) {
             xhr.addEventListener('abort', () => reject(new RequestError(`${method} ${url}`, 'abort', xhr)));
 
             if (query !== undefined) {
-                url = url + '?' + qs.encode(data);
+                url = url + '?' + qs.encode(query);
             }
             if (data !== undefined) {
                 if (options.form instanceof HTMLFormElement) {
