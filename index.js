@@ -24,6 +24,9 @@ function request (url, options = {}) {
             xhr.addEventListener('timeout', () => reject(new RequestError(`${method} ${url}`, 'timeout', xhr)));
             xhr.addEventListener('abort', () => reject(new RequestError(`${method} ${url}`, 'abort', xhr)));
 
+            headers = Object.assign({}, request.commonHeaders, headers || {} );
+            headers = request.prepareHeaders(headers);
+
             if (query !== undefined) {
                 url = url + '?' + qs.encode(query);
             }
@@ -42,9 +45,7 @@ function request (url, options = {}) {
             }
 
             xhr.open(method, url);
-            let allHeaders = Object.assign({}, request.commonHeaders, headers || {} );
-            allHeaders = request.prepareHeaders(allHeaders);
-            Object.entries(allHeaders).forEach(([key, val]) => xhr.setRequestHeader(key, val))
+            Object.entries(headers).forEach(([key, val]) => xhr.setRequestHeader(key, val))
 
             xhr.send(data);
         }
