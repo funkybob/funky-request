@@ -43,6 +43,7 @@ function request (url, options = {}) {
 
             xhr.open(method, url);
             let allHeaders = Object.assign({}, request.commonHeaders, headers || {} );
+            allHeaders = request.prepareHeaders(allHeaders);
             Object.entries(allHeaders).forEach(([key, val]) => xhr.setRequestHeader(key, val))
 
             xhr.send(data);
@@ -50,6 +51,7 @@ function request (url, options = {}) {
     );
 }
 request.commonHeaders = {};
+request.prepareHeaders = headers => headers;
 
 function json (url, options) {
     return request(url, options)
