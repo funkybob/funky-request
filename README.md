@@ -22,6 +22,10 @@ encoding will be applied.
 
 Any values added to this Object will be set as Headers on all requests.
 
+# request.prepareHeaders(headers)
+
+A hook to allow a callable to inspect and modify headers before each request.
+
 # request.json(url, options)
 
 Automatically decodes successful responses from JSON.
