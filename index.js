@@ -12,6 +12,27 @@ function request (url, options = {}) {
     let {data, method, headers, query} = options;
     method = method || 'GET';
 
+    headers = Object.assign({}, request.commonHeaders, headers || {} );
+    headers = request.prepareHeaders(headers, options);
+
+    if (query !== undefined) {
+        url = url + '?' + qs.encode(query);
+    }
+    if (data !== undefined) {
+        if (options.form instanceof HTMLFormElement) {
+            data = new FormData(form)
+        } else {
+            switch(headers['Content-Type']) {
+            case 'application/json':
+                data = JSON.stringify(data);
+                break;
+            default:
+                data = qs.encode(data);
+            }
+        }
+    }
+
+
     return new Promise(
         (resolve, reject) => {
             let xhr = new XMLHttpRequest();
@@ -24,35 +45,14 @@ function request (url, options = {}) {
             xhr.addEventListener('timeout', () => reject(new RequestError(`${method} ${url}`, 'timeout', xhr)));
             xhr.addEventListener('abort', () => reject(new RequestError(`${method} ${url}`, 'abort', xhr)));
 
-            headers = Object.assign({}, request.commonHeaders, headers || {} );
-            headers = request.prepareHeaders(headers);
-
-            if (query !== undefined) {
-                url = url + '?' + qs.encode(query);
-            }
-            if (data !== undefined) {
-                if (options.form instanceof HTMLFormElement) {
-                    data = new FormData(form)
-                } else {
-                    switch(headers['Content-Type']) {
-                    case 'application/json':
-                        data = JSON.stringify(data);
-                        break;
-                    default:
-                        data = qs.encode(data);
-                    }
-                }
-            }
-
             xhr.open(method, url);
             Object.entries(headers).forEach(([key, val]) => xhr.setRequestHeader(key, val))
-
             xhr.send(data);
         }
     );
 }
 request.commonHeaders = {};
-request.prepareHeaders = headers => headers;
+request.prepareHeaders = (headers, options) => headers;
 
 function json (url, options) {
     return request(url, options)
