@@ -2,14 +2,28 @@
   "name": "@funkybob/request",
   "version": "0.0.9",
   "description": "Promise wrapper for XHR",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "browser": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Curtis Maloney",
   "license": "MIT",
   "dependencies": {
-    "@funkybob/qs": "^1.1.0"
+    "@funkybob/qs": "^1.1.1"
+  },
+  "devDependencies": {
+    "esdoc": "^1.1.0",
+    "esdoc-standard-plugin": "^1.0.0"
+  },
+  "esdoc": {
+    "source": "./src",
+    "destination": "./docs",
+    "plugins": [
+      {
+        "name": "esdoc-standard-plugin"
+      }
+    ]
   }
 }
