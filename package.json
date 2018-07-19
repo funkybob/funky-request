@@ -3,6 +3,7 @@
   "version": "0.0.8",
   "description": "Promise wrapper for XHR",
   "main": "index.js",
+  "module": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
