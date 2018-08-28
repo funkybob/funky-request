@@ -4,9 +4,9 @@
   "description": "Promise wrapper for XHR",
   "main": "dist/index.js",
   "module": "src/index.js",
-  "browser": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "rollup -c && agadoo dist/index.js"
   },
   "author": "Curtis Maloney",
   "license": "MIT",
@@ -14,8 +14,10 @@
     "@funkybob/qs": "^1.1.1"
   },
   "devDependencies": {
+    "agadoo": "^1.0.0",
     "esdoc": "^1.1.0",
-    "esdoc-standard-plugin": "^1.0.0"
+    "esdoc-standard-plugin": "^1.0.0",
+    "rollup-plugin-terser": "^1.0.1"
   },
   "esdoc": {
     "source": "./src",
