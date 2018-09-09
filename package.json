@@ -10,6 +10,22 @@
   "author": "Curtis Maloney",
   "license": "MIT",
   "dependencies": {
-    "@funkybob/qs": "^1.1.0"
+    "@funkybob/qs": "^1.1.2"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module"
+    },
+    "rules": {
+      "strict": 2
+    }
+  },
+  "devDependencies": {
+    "eslint": "^5.5.0"
   }
 }
