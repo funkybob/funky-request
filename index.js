@@ -20,7 +20,7 @@ function request (url, options = {}) {
     }
     if (data !== undefined) {
         if (options.form instanceof HTMLFormElement) {
-            data = new FormData(form)
+            data = new FormData(options.form)
         } else {
             switch(headers['Content-Type']) {
             case 'application/json':
